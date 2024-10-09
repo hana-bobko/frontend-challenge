@@ -1,2 +1,2 @@
-# oderco-challenge
+# frontend-challenge
 Teste técnico da Oderço 
