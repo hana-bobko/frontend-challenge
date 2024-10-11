@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import LayoutShellProps from "@/components/layouts/shell";
 import InputSelect from "@/components/InputSelect";
 import SearchBar from "@/components/elements/SearchBar";
 import CustomButton from "@/components/CustomButton";
-import { DataGrid } from "@/components/elements/DataGrid";
+import DataGrid from "@/components/elements/DataGrid";
 import Modal from "@/components/elements/Modal";
 import FormProduct from "@/components/forms/FormProduct";
-
+import data from "../../../data/data.json";
 function Catalog() {
     const [selectedTheme, setSelectedTheme] = useState("recentes");
     const [searchValue, setSearchValue] = useState("");
     const [isModalOpen, setModalOpen] = useState(false);
-
+    const [datas, setDatas] = useState([]);
     const openModal = () => setModalOpen(true);
     const closeModal = () => setModalOpen(false);
     const themeOptions = [
@@ -19,7 +19,13 @@ function Catalog() {
         { label: "Menor preço", value: "menor" },
         { label: "Maior preço", value: "maior" },
     ];
-
+    useEffect(() => {
+        setDatas(data?.products);
+    }, [0]);
+    const sendNewProduct = () => {
+        const updatedData = localStorage.getItem("products");
+        setDatas(JSON.parse(updatedData));
+    };
     return (
         <LayoutShellProps>
             <div className="flex-col w-full h-full justify-center items-center">
@@ -38,10 +44,10 @@ function Catalog() {
                 </div>
 
                 <div className="flex-col">
-                    <DataGrid />
+                    <DataGrid data={datas} />
                 </div>
                 <Modal isOpen={isModalOpen} onClose={closeModal} title="Cadastrar produto" description="">
-                    <FormProduct />
+                    <FormProduct onClose={closeModal} update={() => sendNewProduct()} />
                 </Modal>
             </div>
         </LayoutShellProps>

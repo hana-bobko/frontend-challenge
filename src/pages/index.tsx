@@ -5,6 +5,7 @@ export default function Home() {
     const router = useRouter();
 
     useEffect(() => {
+        localStorage.setItem("isAuth", "false");
         router.push("/catalog/");
     }, [router]);
 

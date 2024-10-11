@@ -16,14 +16,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const login = (email: string, password: string) => {
         if (email === "user@email.com" && password === "User123@") {
             setIsAuthenticated(true);
-            router.push("/main");
+            localStorage.setItem("isAuth", "true");
+            router.push("/admin/catalog");
         } else {
+            localStorage.setItem("isAuth", "false");
             alert("Credenciais inválidas!");
         }
     };
 
     const logout = () => {
         setIsAuthenticated(false);
+        localStorage.setItem("isAuth", "false");
         router.push("/");
     };
 

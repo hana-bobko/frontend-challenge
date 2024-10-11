@@ -1,6 +1,6 @@
 "use client";
 
-import * as React from "react";
+import React, { FC } from "react";
 
 import {
     ColumnDef,
@@ -18,64 +18,7 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-const data: Product[] = [
-    {
-        name: "Teste",
-        price: 1,
-        img: "https://www.kabum.com.br/_next/image?url=https%3A%2F%2Fimages9.kabum.com.br%2Fprodutos%2Ffotos%2F542929%2Fconsole-playstation-5-slim-edicao-digital-branco-2-jogos-1000038914_1713450978_g.jpg&w=640&q=100g",
-        description: "Teste descricao",
-        id: 1,
-        category: "Teste category",
-    },
-    {
-        name: "Teste",
-        price: 1,
-        img: "https://www.kabum.com.br/_next/image?url=https%3A%2F%2Fimages1.kabum.com.br%2Fprodutos%2Ffotos%2F477661%2Fcadeira-gamer-kbm-gaming-cg330-preto-com-almofadas-reclinavel-descanso-de-braco-2d-kgcg330pt_1708604137_g.jpg&w=640&q=100",
-        description: "Teste descricao",
-        id: 2,
-        category: "Teste category",
-    },
-    {
-        name: "Teste",
-        price: 1,
-        img: "https://www.kabum.com.br/_next/image?url=https%3A%2F%2Fimages0.kabum.com.br%2Fprodutos%2Ffotos%2F634690%2Fiphone-16-128gb-ultramarino_1727104401_g.jpg&w=640&q=100",
-        description: "Teste descricao",
-        id: 3,
-        category: "Teste category",
-    },
-    {
-        name: "Teste",
-        price: 1,
-        img: "https://www.kabum.com.br/_next/image?url=https%3A%2F%2Fimages8.kabum.com.br%2Fprodutos%2Ffotos%2F386858%2Fduocast-black-4p5e2aa_1666815689_g.jpg&w=640&q=100",
-        description: "Teste descricao",
-        id: 4,
-        category: "Teste category",
-    },
-    {
-        name: "Teste",
-        price: 1,
-        img: "https://i.pinimg.com/originals/77/b8/ec/77b8ece6ef885e3117dbc414724b58a2.jpg",
-        description: "Teste descricao",
-        id: 5,
-        category: "Teste category",
-    },
-    {
-        name: "Teste",
-        price: 1,
-        img: "https://i.pinimg.com/originals/77/b8/ec/77b8ece6ef885e3117dbc414724b58a2.jpg",
-        description: "Teste descricao",
-        id: 6,
-        category: "Teste category",
-    },
-    {
-        name: "Teste",
-        price: 1,
-        img: "https://i.pinimg.com/originals/77/b8/ec/77b8ece6ef885e3117dbc414724b58a2.jpg",
-        description: "Teste descricao",
-        id: 7,
-        category: "Teste category",
-    },
-];
+
 export type Product = {
     id: number;
     name: string;
@@ -128,7 +71,11 @@ export const columns: ColumnDef<Product>[] = [
     },
 ];
 
-export function DataGrid() {
+interface DataGridProps {
+    data: void;
+}
+
+const DataGrid: FC<DataGridProps> = ({ data }) => {
     const [sorting, setSorting] = React.useState<SortingState>([]);
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
     const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
@@ -200,4 +147,5 @@ export function DataGrid() {
             </div>
         </div>
     );
-}
+};
+export default DataGrid;

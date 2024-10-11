@@ -1,16 +1,17 @@
 // Modal.tsx
 import React from "react";
 import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription, DialogClose } from "@/components/ui/dialog";
-
+import { Button } from "@/components/ui/button";
 interface ReusableModalProps {
     isOpen: boolean;
     onClose: () => void;
+    handleClick: () => void;
     title: string;
     description?: string;
     children: React.ReactNode;
 }
 
-const Modal: React.FC<ReusableModalProps> = ({ isOpen, onClose, title, description, children }) => {
+const Modal: React.FC<ReusableModalProps> = ({ isOpen, onClose, handleClick, title, description, children }) => {
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
             <DialogTrigger asChild>Título</DialogTrigger>
@@ -18,9 +19,6 @@ const Modal: React.FC<ReusableModalProps> = ({ isOpen, onClose, title, descripti
                 <DialogTitle>{title}</DialogTitle>
                 {description && <DialogDescription>{description}</DialogDescription>}
                 <div className="modal-content">{children}</div>
-                <DialogClose asChild>
-                    <button className="close-button">Fechar</button>
-                </DialogClose>
             </DialogContent>
         </Dialog>
     );

@@ -194,11 +194,11 @@
         }
     ],
     "categories": [
-        { "id": "keyboard", "label": "Teclado" },
-        { "id": "mouse", "label": "Mouse" },
-        { "id": "monitor", "label": "Monitor" },
-        { "id": "headset", "label": "Headset" },
-        { "id": "printer", "label": "Impressora" }
+        { "id": "keyboard", "value": "keyboard", "label": "Teclado" },
+        { "id": "mouse", "value": "mouse", "label": "Mouse" },
+        { "id": "monitor", "value": "monitor", "label": "Monitor" },
+        { "id": "headset", "value": "headset", "label": "Headset" },
+        { "id": "printer", "value": "printer", "label": "Impressora" }
     ],
-    "carrinho": []
+    "cart": []
 }

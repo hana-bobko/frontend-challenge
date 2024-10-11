@@ -11,7 +11,7 @@ export default function ShoppingCar({ pop }: ShoppingCarProps) {
     return (
         <div className="flex">
             <ShoppingCart size={24} className="text-gray-800" />
-            {pop > 0 && <div className="flex items-center justify-center bg-emerald-500 w-6 h-6 rounded-full text-white">{pop}</div>}
+            {pop > 0 && <div className="flex items-center justify-center font-semibold bg-sky-600 w-6 h-6 rounded-full text-white">{pop}</div>}
         </div>
     );
 }
