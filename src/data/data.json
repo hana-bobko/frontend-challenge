@@ -1,12 +1,12 @@
 {
     "products": [
         {
-            "name": "Teste",
+            "name": "Teclado Gamer Redragon ",
             "price": 1,
-            "img": "https://www.kabum.com.br/_next/image?url=https%3A%2F%2Fimages9.kabum.com.br%2Fprodutos%2Ffotos%2F542929%2Fconsole-playstation-5-slim-edicao-digital-branco-2-jogos-1000038914_1713450978_g.jpg&w=640&q=100g",
-            "description": "Teste descricao",
+            "img": "/images/teclado.png",
+            "description": "Teclado Mecânico Gamer Redragon Fizz K617 RGB Preto Compacto",
             "id": 1,
-            "category": "Teste category"
+            "category": "Teclado"
         },
         {
             "name": "Teste",
@@ -195,10 +195,8 @@
     ],
     "categories": [
         { "id": "keyboard", "value": "keyboard", "label": "Teclado" },
-        { "id": "mouse", "value": "mouse", "label": "Mouse" },
-        { "id": "monitor", "value": "monitor", "label": "Monitor" },
-        { "id": "headset", "value": "headset", "label": "Headset" },
-        { "id": "printer", "value": "printer", "label": "Impressora" }
+        { "id": "placa", "value": "placa", "label": "Placa de Vídeo" },
+        { "id": "headset", "value": "headset", "label": "Headset" }
     ],
     "cart": []
 }

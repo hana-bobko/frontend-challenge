@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 import LayoutShellProps from "@/components/layouts/shell";
 import InputSelect from "@/components/InputSelect";
 import SearchBar from "@/components/elements/SearchBar";
@@ -16,6 +17,12 @@ function Catalog() {
         { label: "Menor preço", value: "menor" },
         { label: "Maior preço", value: "maior" },
     ];
+    const router = useRouter();
+    const handleNavigate = (product) => {
+        const p = product;
+        console.log(p, "DATADATAADATA");
+        router.push(`/details?data=${encodeURIComponent(JSON.stringify(p))}`);
+    };
 
     const itemsPerPage = 12;
     const [currentPage, setCurrentPage] = useState(1);
@@ -41,7 +48,7 @@ function Catalog() {
                         <SearchBar placeholder="Buscar itens..." value={searchValue} onChange={(newValue) => setSearchValue(newValue)} onClear={() => setSearchValue("")} />
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
                             {currentItems?.map((item) => (
-                                <Cards key={item?.id} title={`R$ ${item?.price}`} content={item?.name} image={item?.img} />
+                                <Cards handleClick={() => handleNavigate(item)} key={item?.id} title={`R$ ${item?.price}`} content={item?.name} image={item?.img} />
                             ))}
                         </div>
                         {totalPages > 1 && <PaginationGuide total={totalPages} value={currentPage} step={itemsPerPage} onChange={(page) => setCurrentPage(parseInt(page))} />}

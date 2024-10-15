@@ -6,26 +6,23 @@ import CustomButton from "@/components/CustomButton";
 import DataGrid from "@/components/elements/DataGrid";
 import Modal from "@/components/elements/Modal";
 import FormProduct from "@/components/forms/FormProduct";
-import data from "../../../data/data.json";
+import { useStore } from "@/hooks/use-store";
 function Catalog() {
     const [selectedTheme, setSelectedTheme] = useState("recentes");
     const [searchValue, setSearchValue] = useState("");
     const [isModalOpen, setModalOpen] = useState(false);
-    const [datas, setDatas] = useState([]);
+
+    const products = useStore((state) => state.products);
+
     const openModal = () => setModalOpen(true);
     const closeModal = () => setModalOpen(false);
+
     const themeOptions = [
         { label: "Mais recentes", value: "recentes" },
         { label: "Menor preço", value: "menor" },
         { label: "Maior preço", value: "maior" },
     ];
-    useEffect(() => {
-        setDatas(data?.products);
-    }, [0]);
-    const sendNewProduct = () => {
-        const updatedData = localStorage.getItem("products");
-        setDatas(JSON.parse(updatedData));
-    };
+
     return (
         <LayoutShellProps>
             <div className="flex-col w-full h-full justify-center items-center">
@@ -44,10 +41,11 @@ function Catalog() {
                 </div>
 
                 <div className="flex-col">
-                    <DataGrid data={datas} />
+                    <DataGrid data={products} />
                 </div>
+
                 <Modal isOpen={isModalOpen} onClose={closeModal} title="Cadastrar produto" description="">
-                    <FormProduct onClose={closeModal} update={() => sendNewProduct()} />
+                    <FormProduct onClose={closeModal} update={() => {}} />
                 </Modal>
             </div>
         </LayoutShellProps>

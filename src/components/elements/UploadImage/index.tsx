@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { UploadCloud } from "lucide-react"; // Usando o ícone 'UploadCloud' da lib 'lucide-react'
+import { UploadCloud } from "lucide-react";
 
 interface FileInputProps {
     onFileChange: (file: File | null) => void;
@@ -8,13 +8,11 @@ interface FileInputProps {
 const UploadImage: React.FC<FileInputProps> = ({ onFileChange }) => {
     const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-    // Função chamada quando o usuário seleciona uma imagem
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0] || null;
         onFileChange(file);
     };
 
-    // Função para ativar o clique no input de file
     const handleClick = () => {
         if (fileInputRef.current) {
             fileInputRef.current.click();
@@ -31,7 +29,6 @@ const UploadImage: React.FC<FileInputProps> = ({ onFileChange }) => {
                 <span className="mt-2 text-sm text-gray-500">Faça upload da imagem do produto</span>
             </div>
 
-            {/* Input escondido que será ativado pelo clique */}
             <input id="picture" ref={fileInputRef} type="file" accept="image/*" className="hidden" onChange={handleFileChange} />
         </div>
     );

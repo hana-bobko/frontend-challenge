@@ -11,7 +11,7 @@ interface ReusableModalProps {
     children: React.ReactNode;
 }
 
-const Modal: React.FC<ReusableModalProps> = ({ isOpen, onClose, handleClick, title, description, children }) => {
+const Modal: React.FC<ReusableModalProps> = ({ isOpen, onClose, title, description, children }) => {
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
             <DialogTrigger asChild>Título</DialogTrigger>
