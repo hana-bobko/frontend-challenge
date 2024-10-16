@@ -23,7 +23,7 @@ interface FormProductProps {
 }
 
 const FormProduct: FC<FormProductProps> = ({ onClose }) => {
-    const [selectedFile, setSelectedFile] = useState<File | null>(null);
+    const [selectedFile, setSelectedFile] = useState(null);
     const { addProduct } = useStore();
 
     const {
@@ -35,7 +35,7 @@ const FormProduct: FC<FormProductProps> = ({ onClose }) => {
         resolver: zodResolver(schema),
     });
 
-    const handleFileChange = (file: File | null) => {
+    const handleFileChange = (file: any) => {
         setSelectedFile(file);
     };
 
@@ -94,7 +94,7 @@ const FormProduct: FC<FormProductProps> = ({ onClose }) => {
                 <UploadImage onFileChange={handleFileChange} />
                 {selectedFile && (
                     <div className="mt-4">
-                        <p>{selectedFile.name}</p>
+                        <p className="text-green-700">Arquivo enviado!</p>
                     </div>
                 )}
             </div>
