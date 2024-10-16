@@ -3,7 +3,7 @@ import * as Slider from "@radix-ui/react-slider";
 import { Label } from "@/components/ui/label";
 
 interface InputRangeProps {
-    initValue: number[]; // Agora recebe um array com [min, max]
+    initValue: number[];
     max?: number;
     step: number;
     label: string;

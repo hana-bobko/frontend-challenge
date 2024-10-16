@@ -1,13 +1,14 @@
 import { create } from "zustand";
 import React, { useEffect } from "react";
 import data from "../data/data.json";
+
 interface Product {
+    id: number;
     name: string;
     category: string;
     price: number;
+    img?: string;
     description: string;
-    img?: string | File;
-    id: number;
 }
 
 interface StoreState {
@@ -18,12 +19,16 @@ interface StoreState {
     removeFromCart: (index: number) => void;
     removeProduct: (index: number) => void;
     updateProduct: (index: number, updatedProduct: Product) => void; // Nova função
+    clearCart: () => void;
 }
 
 export const useStore = create<StoreState>((set) => ({
     products: data?.products || [],
     cart: [],
     addProduct: (newProduct: Product) => {
+        if (typeof newProduct.img !== "string") {
+            newProduct.img = ""; // Ou algum valor padrão
+        }
         set((state) => {
             const updatedProducts = [...state.products, newProduct];
             if (typeof window !== "undefined") {

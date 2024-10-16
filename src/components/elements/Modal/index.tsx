@@ -5,7 +5,6 @@ import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription, D
 interface ReusableModalProps {
     isOpen: boolean;
     onClose: () => void;
-    handleClick: () => void;
     title: string;
     description?: string;
     children: React.ReactNode;

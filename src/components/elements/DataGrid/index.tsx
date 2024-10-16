@@ -22,21 +22,23 @@ import { IconTrash, IconEdit } from "@tabler/icons-react";
 import formatCurrency from "@/utils/data/format-currency";
 import FormEditProduct from "@/components/forms/FormEditProduct";
 import Modal from "../Modal";
-export type Product = {
-    id: number;
-    name: string;
-    price: number;
-    img: string;
-    description: string;
-    category: string;
-};
+
+import { Product } from "@/types/types";
 
 interface DataGridProps {
     data: Product[];
 }
-const DataGrid: FC<DataGridProps> = ({ data }) => {
+//: FC<DataGridProps>
+const DataGrid: React.FC<DataGridProps> = ({ data }) => {
     const [open, setOpen] = useState(false);
-    const [product, setProduct] = useState({});
+    const [product, setProduct] = React.useState<Product>({
+        id: 0,
+        name: "",
+        category: "",
+        price: 0,
+        img: "",
+        description: "",
+    });
     const [sorting, setSorting] = React.useState<SortingState>([]);
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
     const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
@@ -158,7 +160,7 @@ const DataGrid: FC<DataGridProps> = ({ data }) => {
                 </div>
             </div>
             <Modal isOpen={open} onClose={() => setOpen(false)} title={"Edtar o produto"} description={""}>
-                <FormEditProduct onClose={() => setOpen(false)} product={product} />
+                <FormEditProduct onClose={() => setOpen(false)} product={{ ...product, img: product.img || "" }} />
             </Modal>
         </div>
     );

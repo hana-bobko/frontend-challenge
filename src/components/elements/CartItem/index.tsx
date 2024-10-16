@@ -6,15 +6,13 @@ import QuantityButton from "../QuantityButton";
 import formatCurrency from "@/utils/data/format-currency";
 interface SearchBarProps {
     img: string;
-    qty: number;
     price: number;
     name: string;
     handleRemove: () => void;
-    onChange: (value: string) => void;
     onClear?: () => void;
 }
 
-const CartItem: React.FC<SearchBarProps> = ({ img, qty, price, name, handleRemove }) => {
+const CartItem: React.FC<SearchBarProps> = ({ img, price, name, handleRemove }) => {
     const handleQuantityChange = (quantity: number) => {
         console.log("Quantidade atual:", quantity);
     };
@@ -28,7 +26,7 @@ const CartItem: React.FC<SearchBarProps> = ({ img, qty, price, name, handleRemov
                 <div className="flex-col w-full mt-9 ">
                     <h3 className="text-base font-semibold leading-7 text-gray-900">{name}</h3>
                     <div className="flex justify-between w-full">
-                        <QuantityButton initialQuantity={qty} minQuantity={1} maxQuantity={5} onChange={handleQuantityChange} />
+                        <QuantityButton initialQuantity={1} minQuantity={1} maxQuantity={5} onChange={handleQuantityChange} />
                         <h3 className="text-base font-semibold leading-7 text-gray-900">{formatCurrency(price)}</h3>
                     </div>
                 </div>

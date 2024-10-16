@@ -38,7 +38,12 @@ function Catalog() {
 
                             <ul>
                                 {cart.map((item, index) => (
-                                    <CartItem img={item?.img} qty={item?.qty} price={item?.price} name={item?.name} handleRemove={() => removeFromCart(index)} />
+                                    <CartItem
+                                        img={item?.img || "../../../public/images/logo.jpg"}
+                                        price={item?.price}
+                                        name={item?.name}
+                                        handleRemove={() => removeFromCart(index)}
+                                    />
                                 ))}
                             </ul>
                         </div>
@@ -66,7 +71,9 @@ function Catalog() {
                     <div className="flex w-full justify-center items-center px-12 my-3">
                         <CustomButton label="Finalizar compra" handleCliclk={() => finishOrder()} />
                     </div>
-                    <Modal isOpen={open} onClose={() => setOpen(false)} title="Parabéns!" description="Description"></Modal>
+                    <Modal isOpen={open} onClose={() => setOpen(false)} title="Parabéns!" description="Description">
+                        <div></div>
+                    </Modal>
                     <div className="mt-12">
                         <p className="mt-1 text-sm leading-6 text-gray-600 underline">Ajuda</p>
                         <p className="mt-1 text-sm leading-6 text-gray-600 underline">Reembolso</p>

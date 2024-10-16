@@ -1,4 +1,5 @@
 import React, { useState, useEffect, FC } from "react";
+import { generateUniqueId } from "@/utils/data/generate-unique-id";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -13,17 +14,15 @@ const schema = z.object({
     category: z.string().min(1, "Categoria é obrigatória"),
     price: z.number().min(0, "Preço deve ser um número positivo"),
     description: z.string().min(1, "Descrição é obrigatória"),
-    img: z.instanceof(File).optional(),
 });
 
 type FormData = z.infer<typeof schema>;
 
 interface FormProductProps {
     onClose: () => void;
-    update: () => void;
 }
 
-const FormProduct: FC<FormProductProps> = ({ onClose, update }) => {
+const FormProduct: FC<FormProductProps> = ({ onClose }) => {
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const { addProduct } = useStore();
 
@@ -42,14 +41,14 @@ const FormProduct: FC<FormProductProps> = ({ onClose, update }) => {
 
     const onSubmit = async (formData: FormData) => {
         const newProduct = {
+            id: generateUniqueId(),
+            img: selectedFile ? URL.createObjectURL(selectedFile) : "",
             ...formData,
-            img: selectedFile ? URL.createObjectURL(selectedFile) : undefined,
         };
 
         addProduct(newProduct);
 
-        await update();
-        await onClose();
+        onClose();
     };
 
     return (

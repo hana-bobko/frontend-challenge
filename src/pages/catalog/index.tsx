@@ -15,7 +15,7 @@ function Catalog() {
     const [searchValue, setSearchValue] = useState("");
     const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [priceRange, setPriceRange] = useState<number[]>([0, 99999]); // Estado inicial [min, max]
+    const [priceRange, setPriceRange] = useState<number[]>([0, 99999]);
     const itemsPerPage = 12;
 
     const themeOptions = [
@@ -31,30 +31,30 @@ function Catalog() {
         router.push(`/details?data=${encodeURIComponent(JSON.stringify(p))}`);
     };
 
-    // Filtrando os produtos por busca, preço e ordenação
     const filteredItems = data?.products
         ?.filter((item) => {
+            // Filtros de busca e de faixa de preço
             const searchText = searchValue.toLowerCase();
             const matchesSearch = item.name.toLowerCase().includes(searchText) || item.description.toLowerCase().includes(searchText);
-            const matchesPrice = item.price >= priceRange[0] && item.price <= priceRange[1]; // Usando o range [min, max]
+            const matchesPrice = item.price >= priceRange[0] && item.price <= priceRange[1];
             return matchesSearch && matchesPrice;
         })
         ?.sort((a, b) => {
-            if (selectedTheme === "menor") {
-                return a.price - b.price;
-            }
-            if (selectedTheme === "maior") {
-                return b.price - a.price;
-            }
+            // Ordenação por tema selecionado
+            if (selectedTheme === "menor") return a.price - b.price;
+            if (selectedTheme === "maior") return b.price - a.price;
             return 0;
         });
 
-    // Paginação
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const currentItems = filteredItems?.slice(startIndex, endIndex);
     const totalPages = Math.ceil(filteredItems?.length / itemsPerPage);
-
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
+    };
+    console.log(typeof totalPages, "TOTAAAAAAL");
+    console.log(typeof currentPage, "PAGE");
     return (
         <LayoutShellProps>
             <div className="w-full h-full justify-center items-center">
@@ -62,13 +62,7 @@ function Catalog() {
                     <div className="flex-col w-1/3">
                         <InputSelect options={themeOptions} placeholder="Select Theme" selectedValue={selectedTheme} onValueChange={(value) => setSelectedTheme(value)} />
                         <div className="border border-gray-300 rounded-md h-64 flex-col p-6">
-                            <InputRange
-                                initValue={priceRange} // Passando o estado [min, max]
-                                max={99999}
-                                step={100}
-                                label="Preço"
-                                onValueChange={(value) => setPriceRange(value)} // Atualiza o estado [min, max]
-                            />
+                            <InputRange initValue={priceRange} max={99999} step={100} label="Preço" onValueChange={(value) => setPriceRange(value)} />
                             <CheckboxGroup items={data?.categories} selectedItems={selectedCategories} onChange={setSelectedCategories} />
                         </div>
                     </div>

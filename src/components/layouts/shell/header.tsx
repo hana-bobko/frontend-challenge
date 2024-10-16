@@ -5,14 +5,14 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/router";
 import { useStore } from "@/hooks/use-store";
 export default function Header() {
-    const [auth, setAuth] = useState();
+    const [auth, setAuth] = useState<string | null>(null);
     const cart = useStore((state) => state.cart);
     const router = useRouter();
     useEffect(() => {
         const a = localStorage.getItem("isAuth");
         setAuth(a);
     }, [0]);
-    async function navigate(route) {
+    async function navigate(route: string) {
         await router.push(route);
     }
     console.log(auth, "AUTHENCTI");
