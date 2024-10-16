@@ -3,7 +3,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 interface CustomSelectProps {
     label: string;
-    handleCliclk: void;
+    handleCliclk: () => void;
 }
 
 const CustomButton: FC<CustomSelectProps> = ({ label, handleCliclk }) => {

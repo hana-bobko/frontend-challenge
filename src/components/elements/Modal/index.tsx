@@ -1,7 +1,7 @@
 // Modal.tsx
 import React from "react";
 import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription, DialogClose } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
+
 interface ReusableModalProps {
     isOpen: boolean;
     onClose: () => void;

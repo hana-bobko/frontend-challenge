@@ -1,25 +1,27 @@
 import { create } from "zustand";
-import React, { useEffect, useState } from "react";
-
+import React, { useEffect } from "react";
+import data from "../data/data.json";
 interface Product {
     name: string;
     category: string;
     price: number;
     description: string;
     img?: string | File;
+    id: number;
 }
 
 interface StoreState {
     products: Product[];
-    cart: [];
+    cart: Product[];
     addProduct: (newProduct: Product) => void;
     addToCart: (newProduct: Product) => void;
     removeFromCart: (index: number) => void;
     removeProduct: (index: number) => void;
+    updateProduct: (index: number, updatedProduct: Product) => void; // Nova função
 }
 
 export const useStore = create<StoreState>((set) => ({
-    products: [],
+    products: data?.products || [],
     cart: [],
     addProduct: (newProduct: Product) => {
         set((state) => {
@@ -30,9 +32,18 @@ export const useStore = create<StoreState>((set) => ({
             return { products: updatedProducts };
         });
     },
-    removeProduct: (index: number) => {
+    removeProduct: (id: number) => {
         set((state) => {
-            const updatedProducts = state.products.filter((_, i) => i !== index);
+            const updatedProducts = state.products.filter((product) => product.id !== id);
+            if (typeof window !== "undefined") {
+                localStorage.setItem("products", JSON.stringify(updatedProducts));
+            }
+            return { products: updatedProducts };
+        });
+    },
+    updateProduct: (id: number, updatedProduct: Product) => {
+        set((state) => {
+            const updatedProducts = state.products.map((product) => (product.id === id ? { ...product, ...updatedProduct } : product));
             if (typeof window !== "undefined") {
                 localStorage.setItem("products", JSON.stringify(updatedProducts));
             }
@@ -49,7 +60,6 @@ export const useStore = create<StoreState>((set) => ({
             return { cart: updatedCart };
         });
     },
-
     removeFromCart: (index: number) => {
         set((state) => {
             const updatedCart = state.cart.filter((_, i) => i !== index);
@@ -59,6 +69,7 @@ export const useStore = create<StoreState>((set) => ({
             return { cart: updatedCart };
         });
     },
+    clearCart: () => set(() => ({ cart: [] })),
 }));
 
 const ProductsLoader: React.FC = () => {

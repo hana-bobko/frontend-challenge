@@ -1,25 +1,41 @@
 import { FC } from "react";
-import { Slider } from "@/components/ui/slider";
+import * as Slider from "@radix-ui/react-slider";
 import { Label } from "@/components/ui/label";
 
-interface CustomSelectProps {
-    initValue: number;
+interface InputRangeProps {
+    initValue: number[]; // Agora recebe um array com [min, max]
     max?: number;
     step: number;
     label: string;
-    onChange: (value: string) => void;
+    onValueChange: (value: number[]) => void;
 }
 
-const InputRange: FC<CustomSelectProps> = ({ initValue, max, step, label, onChange }) => {
+const InputRange: FC<InputRangeProps> = ({ initValue, max = 100, step, label, onValueChange }) => {
     return (
         <div className="flex-col mb-3">
             <div className="flex justify-between">
                 <Label className="mb-3" htmlFor="range">
                     {label || "Label"}
                 </Label>
-                <Label className="mb-3" htmlFor="range">{`R$ ${initValue} à R$ ${max}`}</Label>
+                <Label className="mb-3" htmlFor="range">
+                    {`R$ ${initValue[0]} à R$ ${initValue[1]}`}
+                </Label>
             </div>
-            <Slider id="range" defaultValue={[initValue || 33]} max={max || 100} step={step || 1} onChange={onChange} />
+            <Slider.Root
+                defaultValue={initValue}
+                value={initValue}
+                max={max}
+                step={step}
+                minStepsBetweenThumbs={1}
+                onValueChange={onValueChange}
+                className="relative flex w-full h-2 bg-gray-200 rounded-lg"
+            >
+                <Slider.Track className="relative flex-grow h-2 bg-gray-200 rounded-lg">
+                    <Slider.Range className="absolute h-full bg-sky-700 rounded-lg" />
+                </Slider.Track>
+                <Slider.Thumb className="relative bottom-3 w-5 h-5 bg-white rounded-full cursor-pointer border-2 border-sky-700  shadow" />
+                <Slider.Thumb className="relative bottom-3 w-5 h-5 bg-white rounded-full cursor-pointer border-2 border-sky-700  shadow" />
+            </Slider.Root>
         </div>
     );
 };

@@ -12,8 +12,7 @@ function Catalog() {
     const [searchValue, setSearchValue] = useState("");
     const [isModalOpen, setModalOpen] = useState(false);
 
-    const products = useStore((state) => state.products);
-
+    const { products, addProduct, updateProduct, removeProduct } = useStore();
     const openModal = () => setModalOpen(true);
     const closeModal = () => setModalOpen(false);
 
@@ -45,7 +44,7 @@ function Catalog() {
                 </div>
 
                 <Modal isOpen={isModalOpen} onClose={closeModal} title="Cadastrar produto" description="">
-                    <FormProduct onClose={closeModal} update={() => {}} />
+                    <FormProduct onClose={closeModal} />
                 </Modal>
             </div>
         </LayoutShellProps>

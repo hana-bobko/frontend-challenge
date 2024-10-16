@@ -2,14 +2,28 @@ import React, { useState } from "react";
 import LayoutShellProps from "@/components/layouts/shell";
 import CartItem from "@/components/elements/CartItem";
 import CustomButton from "@/components/CustomButton";
+import { useRouter } from "next/router";
 import { useStore } from "@/hooks/use-store";
 import formatCurrency from "@/utils/data/format-currency";
+import Modal from "@/components/elements/Modal";
 function Catalog() {
-    const { cart, removeFromCart } = useStore();
+    const [open, setOpen] = useState(false);
+    const router = useRouter();
+    const { cart, removeFromCart, clearCart } = useStore();
 
     const calculateTotalPrice = () => {
         return cart.reduce((total, item) => total + item.price, 0);
     };
+    async function finishOrder() {
+        setOpen(true);
+
+        await clearCart();
+
+        setTimeout(() => {
+            router.push("/catalog");
+            setOpen(false);
+        }, 3000);
+    }
     return (
         <LayoutShellProps>
             <div className="flex w-full h-full justify-center items-start border border-gray-200 rounded-sm p-3">
@@ -50,8 +64,9 @@ function Catalog() {
                         <p className="mt-1 max-w-2xl text-lg leading-6 text-gray-800">{formatCurrency(calculateTotalPrice())}</p>
                     </div>
                     <div className="flex w-full justify-center items-center px-12 my-3">
-                        <CustomButton label="Finalizar compra" handleCliclk={() => console.log("cliquei")} />
+                        <CustomButton label="Finalizar compra" handleCliclk={() => finishOrder()} />
                     </div>
+                    <Modal isOpen={open} onClose={() => setOpen(false)} title="Parabéns!" description="Description"></Modal>
                     <div className="mt-12">
                         <p className="mt-1 text-sm leading-6 text-gray-600 underline">Ajuda</p>
                         <p className="mt-1 text-sm leading-6 text-gray-600 underline">Reembolso</p>

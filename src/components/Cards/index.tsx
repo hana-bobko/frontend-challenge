@@ -14,8 +14,10 @@ const Cards: React.FC<CustomCardProps> = ({ title, image, content, handleClick }
         <Card className="h-64 rounded-md mr-3" onClick={handleClick}>
             <CardHeader className="flex-col justify-start items-start">
                 <img src={image} alt="product image" className="w-60 h-40" />
-                <CardDescription>{content}</CardDescription>
-                <CardTitle>{title}</CardTitle>
+                <div className="lex-col min-w-0 flex-1 gap-2 w-full">
+                    <CardDescription className="font-light truncate leading-8 text-gray-600">{content}</CardDescription>
+                    <CardTitle>{title}</CardTitle>
+                </div>
             </CardHeader>
         </Card>
     );

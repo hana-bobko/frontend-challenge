@@ -2,7 +2,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/details": "pages/details.js",
-  "/cart": "pages/cart.js",
+  "/login": "pages/login.js",
+  "/admin/catalog": "pages/admin/catalog.js",
   "/catalog": "pages/catalog.js"
 }
