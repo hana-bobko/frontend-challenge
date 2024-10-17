@@ -13,7 +13,7 @@ interface CustomSelectProps {
     onValueChange: (value: string) => void;
 }
 
-const InputSelect: FC<CustomSelectProps> = ({ options, placeholder = "Select an option", selectedValue, onValueChange }) => {
+const InputSelect: FC<CustomSelectProps> = ({ options, placeholder = "Selecione uma opção", selectedValue, onValueChange }) => {
     return (
         <Select value={selectedValue} onValueChange={onValueChange}>
             <SelectTrigger className="w-full mb-3  h-14">

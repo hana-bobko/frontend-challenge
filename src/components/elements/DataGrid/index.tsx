@@ -44,7 +44,7 @@ const DataGrid: React.FC<DataGridProps> = ({ data }) => {
     const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
     const [rowSelection, setRowSelection] = React.useState({});
 
-    const { products, removeProduct } = useStore();
+    const { removeProduct } = useStore();
     const columns: ColumnDef<Product>[] = [
         {
             id: "id",

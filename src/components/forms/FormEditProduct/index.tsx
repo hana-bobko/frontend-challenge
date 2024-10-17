@@ -14,7 +14,7 @@ const schema = z.object({
     category: z.string().min(1, "Categoria é obrigatória"),
     price: z.number().min(0, "Preço deve ser um número positivo"),
     description: z.string().min(1, "Descrição é obrigatória"),
-    img: z.instanceof(File).optional(),
+    img: z.string().optional(),
 });
 
 type FormData = z.infer<typeof schema>;
