@@ -16,7 +16,7 @@ function Catalog() {
     const [searchValue, setSearchValue] = useState("");
     const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [priceRange, setPriceRange] = useState<number[]>([0, 99999]);
+    const [priceRange, setPriceRange] = useState<number[]>([0, 9999]);
     const itemsPerPage = 12;
 
     const themeOptions = [

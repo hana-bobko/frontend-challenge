@@ -7,7 +7,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import UploadImage from "@/components/elements/UploadImage";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useStore } from "@/hooks/use-store";
 const schema = z.object({
     name: z.string().min(1, "Nome é obrigatório"),
