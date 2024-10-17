@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useEffect } from "react";
 import LayoutShellProps from "@/components/layouts/shell";
 import InputSelect from "@/components/InputSelect";
