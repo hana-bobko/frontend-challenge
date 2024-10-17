@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import LayoutShellProps from "@/components/layouts/shell";
 import CartItem from "@/components/elements/CartItem";

@@ -1,3 +1,4 @@
+"use client";
 import LayoutShellProps from "@/components/layouts/shell";
 import { useStore } from "@/hooks/use-store";
 import { Button } from "@/components/ui/button";
