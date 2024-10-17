@@ -194,7 +194,7 @@
         }
     ],
     "categories": [
-        { "id": "keyboard", "value": "teclado", "label": "Teclado" },
+        { "id": "teclado", "value": "teclado", "label": "Teclado" },
         { "id": "placa", "value": "placa", "label": "Placa de Vídeo" },
         { "id": "headset", "value": "headset", "label": "Headset" }
     ],

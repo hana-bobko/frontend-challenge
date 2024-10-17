@@ -18,7 +18,7 @@ interface StoreState {
     addToCart: (newProduct: Product) => void;
     removeFromCart: (index: number) => void;
     removeProduct: (index: number) => void;
-    updateProduct: (index: number, updatedProduct: Product) => void; // Nova função
+    updateProduct: (index: number, updatedProduct: Product) => void;
     clearCart: () => void;
 }
 
@@ -27,7 +27,7 @@ export const useStore = create<StoreState>((set) => ({
     cart: [],
     addProduct: (newProduct: Product) => {
         if (typeof newProduct.img !== "string") {
-            newProduct.img = ""; // Ou algum valor padrão
+            newProduct.img = "";
         }
         set((state) => {
             const updatedProducts = [...state.products, newProduct];

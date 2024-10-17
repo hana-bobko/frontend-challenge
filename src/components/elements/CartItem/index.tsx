@@ -1,7 +1,5 @@
 import React from "react";
 import { IconX } from "@tabler/icons-react";
-import { Input } from "@/components/ui/input";
-import { IconSearch } from "@tabler/icons-react";
 import QuantityButton from "../QuantityButton";
 import formatCurrency from "@/utils/data/format-currency";
 interface SearchBarProps {

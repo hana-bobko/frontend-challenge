@@ -57,10 +57,10 @@ const FormEditProduct: FC<FormProductProps> = ({ onClose, product }) => {
         const newProduct = {
             ...formData,
             img: `/images/${product?.category || "logo"}.png`,
-            id: product.id, // Certifique-se de que está passando o ID correto
+            id: product.id,
         };
 
-        updateProduct(product.id, newProduct); // Atualize aqui para passar newProduct
+        updateProduct(product.id, newProduct);
 
         onClose();
     };

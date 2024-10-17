@@ -1,6 +1,6 @@
 // Modal.tsx
 import React from "react";
-import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription, DialogClose } from "@/components/ui/dialog";
+import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
 interface ReusableModalProps {
     isOpen: boolean;

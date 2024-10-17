@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import LayoutShellProps from "@/components/layouts/shell";
 import InputSelect from "@/components/InputSelect";
@@ -34,14 +34,15 @@ function Catalog() {
 
     const filteredItems = data?.products
         ?.filter((item) => {
-            // Filtros de busca e de faixa de preço
             const searchText = searchValue.toLowerCase();
             const matchesSearch = item.name.toLowerCase().includes(searchText) || item.description.toLowerCase().includes(searchText);
             const matchesPrice = item.price >= priceRange[0] && item.price <= priceRange[1];
-            return matchesSearch && matchesPrice;
+
+            const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(item.category);
+
+            return matchesSearch && matchesPrice && matchesCategory;
         })
         ?.sort((a, b) => {
-            // Ordenação por tema selecionado
             if (selectedTheme === "menor") return a.price - b.price;
             if (selectedTheme === "maior") return b.price - a.price;
             return 0;
@@ -54,8 +55,7 @@ function Catalog() {
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
     };
-    console.log(typeof totalPages, "TOTAAAAAAL");
-    console.log(typeof currentPage, "PAGE");
+
     return (
         <LayoutShellProps>
             <div className="w-full h-full justify-center items-center">

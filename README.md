@@ -1,5 +1,7 @@
 # frontend-challenge
-Teste técnico da Oderço 
+
+Teste técnico da Oderço
+
 # [Link da loja e-commerce online](https://oderco-challenge.netlify.app)
 
 ## 🎉 Iniciando o projeto na sua máquina
@@ -22,15 +24,17 @@ cd frontend-challenge
 npm install
 ```
 
-
 #### 4. inicie o projeto
 
 ```script
 npm run dev
 ```
+
 #### O projeto estará disponível na URL http://localhost:3000
 
 # 📚 Bibliotecas a mais inclusas nesse projeto
-- [zod (validação de formulários)](https://zod.dev)
-- [tabler/icons-react (ícones)](https://tabler.io/admin-template)
-- [zustand (gerenciamento de estado global para pequenas aplicações)](https://zustand-demo.pmnd.rs)
+
+-   [zod (validação de formulários)](https://zod.dev)
+-   [tabler/icons-react (ícones)](https://tabler.io/admin-template)
+-   [zustand (gerenciamento de estado global para pequenas aplicações)](https://zustand-demo.pmnd.rs)
+-   [sharp (recomendação do next.js)](https://www.npmjs.com/package/sharp)

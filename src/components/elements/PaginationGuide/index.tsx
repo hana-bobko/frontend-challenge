@@ -2,10 +2,10 @@ import React, { FC } from "react";
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 
 interface PaginationProps {
-    total: number; // Total number of pages
-    value?: number; // Current page value
-    step: number; // Step size, if necessary
-    onChange: (page: number) => void; // Function to handle page change
+    total: number;
+    value?: number;
+    step: number;
+    onChange: (page: number) => void;
 }
 
 const PaginationGuide: FC<PaginationProps> = ({ total, value = 1, onChange }) => {
@@ -19,7 +19,7 @@ const PaginationGuide: FC<PaginationProps> = ({ total, value = 1, onChange }) =>
 
     const handleChange = (page: number) => {
         if (page !== value) {
-            onChange(page); // Ensure only non-current page clicks trigger change
+            onChange(page);
         }
     };
 
@@ -40,14 +40,6 @@ const PaginationGuide: FC<PaginationProps> = ({ total, value = 1, onChange }) =>
                         </PaginationItem>
                     );
                 })}
-
-                {/* {[...Array(total)].map((_, index) => (
-                    <PaginationItem key={index}>
-                        <PaginationLink href="#" onClick={() => handleChange(index + 1)}>
-                            {index + 1}
-                        </PaginationLink>
-                    </PaginationItem>
-                ))} */}
                 {total > 5 && (
                     <PaginationItem>
                         <PaginationEllipsis />
